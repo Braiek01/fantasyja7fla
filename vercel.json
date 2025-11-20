@@ -1,24 +1,18 @@
 {
   "version": 2,
-  "buildCommand": "npm ci --legacy-peer-deps && npm run build",
-  "outputDirectory": "dist/front",
-  "framework": null,
-  "installCommand": "npm ci --legacy-peer-deps",
-  "rewrites": [
+  "builds": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/front"
+      }
     }
   ],
-  "headers": [
+  "routes": [
     {
-      "source": "/assets/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
