@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css">  
+<link rel="stylesheet" href="https://unpkg.com/primeicons@latest/primeicons.css"> 
+
+<div class="bench-container flex flex-column justify-content-center align-items-center h-full w-full p-3">
+  <div class="bench-header mb-3">
+    <h3 class="bench-title text-white text-sm md:text-base font-bold text-center m-0" 
+        style="font-family: 'Orbitron', monospace; letter-spacing: 1px;">
+      BENCH ({{ getBenchPlayerCount() }}/7)
+    </h3>
+  </div>
+  
+  <div class="bench-slots flex justify-content-center gap-2 md:gap-3 lg:gap-4 flex-wrap">
+    <div *ngFor="let player of benchPlayers; let i = index" 
+         class="bench-slot w-4rem h-5rem md:w-5rem md:h-6rem cursor-pointer transition-all transition-duration-300"
+         (click)="onBenchSlotClick(i)">
+      
+      <!-- Empty slot -->
+      <div *ngIf="!player" class="bench-slot-content flex align-items-center justify-content-center w-full h-full border-2 border-dashed border-white-alpha-40 border-round-lg">
+        <i class="add-icon pi pi-plus text-white-alpha-70 text-lg md:text-xl lg:text-2xl"></i>
+      </div>
+      
+      <!-- Player slot -->
+      <div *ngIf="player" class="bench-player-content flex flex-column align-items-center h-full p-1 md:p-2 border-2 border-green-500 border-round-lg"
+           [style.background]="'linear-gradient(135deg, #059669 0%, #10b981 100%)'">
+        <div class="player-image w-2rem h-2rem md:w-3rem md:h-3rem border-round-3xl overflow-hidden mb-1">
+          <img [src]="player.image" [alt]="player.name" class="w-full h-full object-cover">
+        </div>
+        <div class="player-info text-center flex-1">
+          <div class="player-name text-white text-xs font-bold">{{ player.name }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Player Selection Modal for Bench -->
+<app-player-selection-modal
+  [(visible)]="showPlayerModal"
+  position="BENCH"
+  (playerSelected)="onPlayerSelected($event)">
+</app-player-selection-modal>

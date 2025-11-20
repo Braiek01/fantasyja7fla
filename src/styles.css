@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Tourney:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow: hidden;
+}
+
+body {
+  background: linear-gradient(135deg, #0c1426 0%, #1e3a5f 50%, #2d5a87 100%);
+}
+
+/* Use Orbitron for headers and numbers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', monospace;
+}
+
+.numeric {
+  font-family: 'Orbitron', monospace;
+}
+
+/* Tourney font class for special branding */
+.tourney-font {
+  font-family: 'Tourney', sans-serif;
+}

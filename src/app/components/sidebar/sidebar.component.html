@@ -1,0 +1,55 @@
+<div class="sidebar-content flex flex-column h-full p-3 gap-3">
+  <!-- Status Section -->
+  <div class="status-section">
+    <h3 class="section-title text-white text-sm md:text-base font-bold mb-2">STATUS</h3>
+    <div class="status-item flex align-items-center gap-2 p-2 border-round" 
+         style="background: rgba(255, 71, 87, 0.1);">
+      <i class="pi pi-exclamation-circle text-red-400 text-sm"></i>
+      <span class="status-text text-red-300 text-xs md:text-sm font-medium">CREATING NEW SQUAD</span>
+    </div>
+  </div>
+
+  <!-- Squad Name -->
+  <div class="squad-name flex flex-column gap-2">
+    <label class="input-label flex align-items-center gap-2 text-white text-xs md:text-sm font-semibold">
+      <i class="pi pi-users text-red-400"></i>
+      <span>SQUAD NAME</span>
+    </label>
+    <input 
+      type="text" 
+      pInputText 
+      [(ngModel)]="squadName"
+      placeholder="Enter squad name"
+      class="squad-input w-full p-2 text-sm border-round" />
+  </div>
+
+  <!-- Formation -->
+  <div class="formation flex flex-column gap-2">
+    <label class="input-label flex align-items-center gap-2 text-white text-xs md:text-sm font-semibold">
+      <i class="pi pi-th text-red-400"></i>
+      <span>FORMATION</span>
+    </label>
+    <p-select 
+      [options]="formationOptions" 
+      [(ngModel)]="selectedFormation"
+      optionLabel="label"
+      optionValue="value"
+      placeholder="Select Formation"
+      styleClass="formation-select w-full"
+      (onChange)="onFormationChange()">
+    </p-select>
+  </div>
+
+  <!-- Clear All Button -->
+  <div class="flex-1 flex align-items-end">
+    <p-button 
+      label="CLEAR ALL" 
+      icon="pi pi-trash"
+      severity="secondary"
+      outlined="true"
+      size="small"
+      styleClass="clear-btn w-full"
+      (onClick)="clearAll()">
+    </p-button>
+  </div>
+</div>

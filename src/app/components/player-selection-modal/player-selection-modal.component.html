@@ -1,0 +1,94 @@
+<p-dialog
+  [visible]="visible"
+  [modal]="true"
+  [closable]="true"
+  [resizable]="false"
+  [draggable]="false"
+  styleClass="player-selection-dialog"
+  (onHide)="onHide()">
+
+  <div class="player-selection-content flex flex-column gap-3 w-full">
+    <!-- Header with title and close -->
+    <div class="modal-header flex align-items-center justify-content-between mb-2">
+      <div class="flex align-items-center gap-2">
+        <i class="pi pi-search text-blue-400 text-lg"></i>
+        <h2 class="modal-title text-white text-lg font-bold m-0" style="font-family: 'Orbitron', monospace;">
+          SEARCH PLAYERS
+        </h2>
+      </div>
+      <p-button 
+        icon="pi pi-times" 
+        severity="secondary" 
+        text="true" 
+        rounded="true"
+        size="small"
+        (onClick)="closeModal()">
+      </p-button>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="filter-tabs flex gap-1 mb-3">
+      <p-button 
+        *ngFor="let filter of filters"
+        [label]="filter.label"
+        [severity]="selectedFilter === filter.value ? 'danger' : 'secondary'"
+        [outlined]="selectedFilter !== filter.value"
+        size="small"
+        styleClass="filter-tab text-xs"
+        (onClick)="onFilterChange(filter.value)">
+      </p-button>
+    </div>
+
+    <!-- Players grid - Display all immediately -->
+    <div class="players-grid-container">
+      <div class="players-grid grid grid-nogutter" style="grid-template-columns: repeat(4, 1fr); gap: 0.75rem;">
+        <div 
+          *ngFor="let player of getFilteredPlayers()"
+          class="player-card cursor-pointer transition-all transition-duration-300"
+          (click)="selectPlayer(player)">
+          
+          <div class="player-card-content relative overflow-hidden border-round-lg"
+               [style.background]="getCardBackground(player.category)">
+            
+            <!-- Category icon - top right corner -->
+            <div class="category-icon absolute top-0 right-0 z-5 m-2">
+              <i [class]="getCategoryIcon(player.category)" class="text-yellow-400 text-sm"></i>
+            </div>
+
+            <!-- Player image -->
+            <div class="player-image-container relative h-full">
+              <img 
+                [src]="player.image" 
+                [alt]="player.name"
+                class="player-image w-full h-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
+                loading="lazy">
+              
+              <!-- Fallback if image doesn't exist -->
+              <div class="image-fallback hidden w-full h-full flex align-items-center justify-content-center bg-gray-700">
+                <i class="pi pi-user text-gray-400 text-4xl"></i>
+              </div>
+            </div>
+
+            <!-- Player name overlay - bottom -->
+            <div class="player-name-overlay absolute bottom-0 left-0 right-0 z-5 p-2 text-center">
+              <div class="player-name text-white font-bold text-xs" 
+                   style="font-family: 'Orbitron', monospace; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                {{ player.name }}
+              </div>
+            </div>
+
+            <!-- Hover effect overlay -->
+            <div class="hover-overlay absolute top-0 left-0 w-full h-full bg-white-alpha-10 opacity-0 transition-all transition-duration-300"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Message when no players in category -->
+      <div *ngIf="getFilteredPlayers().length === 0" class="no-players flex flex-column align-items-center justify-content-center h-20rem">
+        <i class="pi pi-users text-white-alpha-50 text-4xl mb-3"></i>
+        <p class="text-white-alpha-70 text-lg m-0">No players available in this category</p>
+      </div>
+    </div>
+  </div>
+</p-dialog>

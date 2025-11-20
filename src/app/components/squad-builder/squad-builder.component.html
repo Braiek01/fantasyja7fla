@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css">  
+<link rel="stylesheet" href="https://unpkg.com/primeicons@latest/primeicons.css"> 
+
+<div class="squad-builder flex flex-column h-screen">
+  <app-header class="flex-shrink-0"></app-header>
+  
+  <div class="main-content flex flex-1 overflow-hidden">
+    <!-- Left Sidebar - Responsive width -->
+    <app-sidebar 
+      class="sidebar flex-shrink-0 w-full md:w-20rem lg:w-25rem"
+      (formationChange)="onFormationChange($event)">
+    </app-sidebar>
+    
+    <!-- Main Pitch Area - Takes remaining space -->
+    <div class="pitch-container flex-1 overflow-hidden">
+      <app-formation-pitch 
+        [selectedFormation]="selectedFormation">
+      </app-formation-pitch>
+    </div>
+  </div>
+  
+  <!-- Bottom Bench - Fixed height, responsive -->
+  <app-bench class="bench-area flex-shrink-0 h-8rem md:h-10rem lg:h-12rem"></app-bench>
+</div>

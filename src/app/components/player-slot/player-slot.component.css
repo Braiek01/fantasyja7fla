@@ -1,0 +1,101 @@
+:host {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4rem;
+  height: 5rem;
+}
+
+/* Different z-index layers for different positions */
+:host(.goalkeeper) {
+  z-index: 1;
+}
+
+:host(.defender) {
+  z-index: 2;
+}
+
+:host(.midfielder) {
+  z-index: 3;
+}
+
+:host(.forward) {
+  z-index: 4;
+}
+
+/* Default z-index */
+:host {
+  z-index: 10;
+}
+
+.player-slot {
+  width: 100%;
+  height: 100%;
+}
+
+.player-slot:hover {
+  transform: scale(1.05);
+  z-index: 100; /* Bring to front when hovering */
+}
+
+.slot-content {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.player-content {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a4c96 0%, #2563eb 100%);
+  color: white;
+}
+
+.empty .slot-content {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.empty:hover .slot-content {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive sizing */
+@media (min-width: 768px) {
+  :host {
+    width: 5rem;
+    height: 6.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :host {
+    width: 5rem;
+    height: 6.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :host {
+    width: 3rem;
+    height: 4rem;
+  }
+  
+  .player-name {
+    font-size: 0.5rem !important;
+  }
+  
+  .player-rating {
+    font-size: 0.75rem !important;
+  }
+  
+  .position-badge {
+    font-size: 0.5rem !important;
+  }
+  
+  .add-icon {
+    font-size: 0.875rem !important;
+  }
+}

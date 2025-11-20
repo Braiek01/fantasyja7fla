@@ -1,0 +1,71 @@
+.squad-builder {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(135deg, #0c1426 0%, #1e3a5f 50%, #2d5a87 100%);
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pitch-container {
+  flex: 1;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.bench-area {
+  height: 120px;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .pitch-container {
+    flex: 1;
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    max-height: 180px;
+  }
+  
+  .bench-area {
+    height: 100px;
+  }
+  
+  .squad-builder {
+    flex-direction: column;
+  }
+  
+  .main-content {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css">  
+<link rel="stylesheet" href="https://unpkg.com/primeicons@latest/primeicons.css"> 
+
+<div class="player-slot cursor-pointer transition-all transition-duration-300" 
+     [class.empty]="!player"
+     (click)="onSlotClick()">
+  
+  <!-- Empty Slot -->
+  <div *ngIf="!player" class="slot-content flex flex-column align-items-center justify-content-center h-full border-2 border-dashed border-white-alpha-50 border-round-lg">
+    <div class="position-badge text-white-alpha-90 text-xs font-bold text-center mb-1" 
+         style="font-family: 'Orbitron', monospace; letter-spacing: 0.5px;">
+      {{ position }}
+    </div>
+    <i class="add-icon pi pi-plus text-white-alpha-70 text-lg md:text-xl"></i>
+  </div>
+
+  <!-- Player Content -->
+  <div *ngIf="player" class="player-content flex flex-column align-items-center h-full p-1 md:p-2 border-2 border-blue-500 border-round-lg">
+    <div class="player-image w-2rem h-2rem md:w-3rem md:h-3rem border-round-3xl overflow-hidden mb-1 md:mb-2">
+      <img [src]="player.image" [alt]="player.name" class="w-full h-full object-cover">
+    </div>
+    <div class="player-info text-center flex-1">
+      <div class="player-name text-white text-xs font-bold mb-1">{{ player.name }}</div>
+    </div>
+  </div>
+</div>

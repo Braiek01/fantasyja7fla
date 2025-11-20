@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css">  
+<link rel="stylesheet" href="https://unpkg.com/primeicons@latest/primeicons.css"> 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Tourney:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<header class="header">
+  <div class="flex align-items-center justify-content-between w-full px-2 sm:px-3 py-2">
+    <!-- Left side - Menu and Logo -->
+    <div class="flex align-items-center gap-2 sm:gap-3">
+      <p-button 
+        icon="pi pi-bars" 
+        severity="secondary" 
+        text="true"
+        class="block sm:hidden">
+      </p-button>
+      <div class="logo flex align-items-center gap-1 sm:gap-2">
+        <i class="pi pi-circle text-white text-lg sm:text-2xl"></i>
+        <span class="logo-text text-white font-bold text-base sm:text-xl lg:text-2xl">FANTASY JA7FLA</span>
+      </div>
+    </div>
+
+    <!-- Center - Navigation (hidden on small screens) -->
+    <!--div class="hidden lg:flex gap-4">
+      <a href="#" class="nav-link text-white font-semibold">HOME</a>
+      <a href="#" class="nav-link text-white font-semibold">DATABASE</a>
+      <a href="#" class="nav-link text-white font-semibold">SQUAD BUILDER</a>
+      <a href="#" class="nav-link text-white font-semibold">COMPARE PLAYERS</a>
+    </div-->
+
+ 
+    <div class="flex align-items-center gap-1 sm:gap-2">
+
+      <div class="audio-controls flex align-items-center gap-1">
+        <p-button 
+          [icon]="audioService.getIsPlaying() ? 'pi pi-pause' : 'pi pi-play'" 
+          severity="secondary" 
+          text="true" 
+          rounded="true"
+          size="small"
+          (onClick)="toggleAudio()"
+          [pTooltip]="getPlayPauseTooltip()">
+        </p-button>
+        
+        <p-button 
+          [icon]="getAudioIcon()" 
+          severity="secondary" 
+          text="true" 
+          rounded="true"
+          size="small"
+          (onClick)="toggleMute()"
+          [pTooltip]="getMuteTooltip()">
+        </p-button>
+        
+        <p-button 
+          icon="pi pi-cog" 
+          severity="secondary" 
+          text="true" 
+          rounded="true"
+          size="small"
+          (onClick)="toggleVolumeSlider()"
+          pTooltip="Volume Settings"
+          class="hidden sm:block">
+        </p-button>
+        
+        <!-- Volume Slider (appears when toggled) -->
+        <div class="volume-slider-container" [class.show]="showVolumeSlider">
+          <div class="volume-slider-panel">
+            <label class="volume-label">Volume: {{volumeValue}}%</label>
+            <p-slider 
+              [(ngModel)]="volumeValue"
+              [min]="0"
+              [max]="100"
+              [step]="1"
+              (onSlideEnd)="onVolumeChange()"
+              styleClass="volume-slider">
+            </p-slider>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Button (visible on small screens) -->
+      <p-button 
+        icon="pi pi-ellipsis-v" 
+        severity="secondary" 
+        text="true"
+        rounded="true"
+        size="small"
+        class="block lg:hidden"
+        (onClick)="toggleMobileMenu()"
+        pTooltip="Menu">
+      </p-button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Menu (collapsible) -->
+  <div class="mobile-nav lg:hidden" [class.show]="showMobileMenu">
+    <!--div class="flex flex-column gap-2 p-3 border-top-1 border-white-alpha-20">
+      <a href="#" class="mobile-nav-link text-white font-semibold p-2 border-round">HOME</a>
+      <a href="#" class="mobile-nav-link text-white font-semibold p-2 border-round">DATABASE</a>
+      <a href="#" class="mobile-nav-link text-white font-semibold p-2 border-round">SQUAD BUILDER</a>
+      <a href="#" class="mobile-nav-link text-white font-semibold p-2 border-round">COMPARE PLAYERS</a>
+    </div-->
+  </div>
+</header>
+
+<!-- Note: The @HostListener decorator should be added to the HeaderComponent TypeScript class file, not in the HTML template -->
