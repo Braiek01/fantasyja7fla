@@ -20,9 +20,5 @@
         }
       ]
     }
-  ],
-  "env": {
-    "NPM_FLAGS": "--legacy-peer-deps",
-    "NODE_VERSION": "18"
-  }
+  ]
 }
